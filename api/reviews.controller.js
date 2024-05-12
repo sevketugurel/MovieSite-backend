@@ -1,5 +1,4 @@
 import ReviewsDAO from "../dao/reviewsDAO.js"
-// EN SON BU SAYFAYI YAPTIK VE BURADA BIRAKTIM DAKİKA 6.29.00 cumartesi commit edeceğim
 export default class ReviewsController {
   static async apiPostReview(req, res, next) {
     try {
@@ -83,6 +82,4 @@ export default class ReviewsController {
       res.status(500).json({ error: e.message })
     }
   }
-
-
 }
