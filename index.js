@@ -8,7 +8,9 @@ import ReviewsDAO from "./dao/reviewsDAO.js";
 const MongoClient = mongodb.MongoClient;
 const mongo_username = process.env.MONGO_USERNAME;
 const mongo_password = process.env.MONGO_PASSWORD;
-const uri = `mongodb+srv://${mongo_username}:${mongo_password}@cluster0.ptecbiy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const uri = `mongodb+srv://ugurelsevket:a15115176120e@moviessite.witkipw.mongodb.net/?retryWrites=true&w=majority&appName=moviessite&tls=true&tlsAllowInvalidCertificates=true`;
+
+// index çalıştırdığımda db bağlantı hatası alıyorum bunu çözmem gerekiyor.
 
 const port = 8000;
 
@@ -28,3 +30,4 @@ MongoClient.connect(
       console.log(`Listening on port ${port}`)
     })
   })
+
