@@ -8,7 +8,7 @@ import ReviewsDAO from "./dao/reviewsDAO.js";
 const MongoClient = mongodb.MongoClient;
 const mongo_username = process.env.MONGO_USERNAME;
 const mongo_password = process.env.MONGO_PASSWORD;
-const uri = `mongodb+srv://ugurelsevket:a15115176120e@moviessite.witkipw.mongodb.net/?retryWrites=true&w=majority&appName=moviessite&tls=true&tlsAllowInvalidCertificates=true`;
+const uri = `mongodb+srv://${mongo_username}:${mongo_password}@moviesdb.xv9i54f.mongodb.net/?retryWrites=true&w=majority&appName=MoviesDB`;
 
 // index çalıştırdığımda db bağlantı hatası alıyorum bunu çözmem gerekiyor.
 

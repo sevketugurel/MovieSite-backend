@@ -59,6 +59,7 @@ export default class ReviewsController {
     }
   }
 
+  //SANKİ SİLMEDE SIKINTI VAR GİBİ BUARADA KALDIM.
   static async apiDeleteReview(req, res, next) {
     try {
       const reviewId = req.params.id
