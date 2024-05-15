@@ -1,5 +1,19 @@
 import ReviewsDAO from "../dao/reviewsDAO.js"
+
 export default class ReviewsController {
+  static async apiGetReviewById(req, res) {
+    try {
+      const review = await ReviewsDAO.getReview(req.params.id);
+      if (!review) {
+        return res.status(404).json({ error: "Review not found" });
+      }
+      res.json(review);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: "Server error" });
+    }
+  }
+
   static async apiPostReview(req, res, next) {
     try {
       const movieId = req.body.movieId
@@ -18,7 +32,7 @@ export default class ReviewsController {
     }
   }
 
-  static async apiGetReview(req, res, next) {
+  static async apiGetReview(req, res) {
     try {
       let id = req.params.id || {}
       let review = await ReviewsDAO.getReview(id)
@@ -27,6 +41,7 @@ export default class ReviewsController {
         return
       }
       res.json(review)
+
     } catch (e) {
       res.status(500).json({error: e.message})
     }
@@ -45,7 +60,7 @@ export default class ReviewsController {
       )
 
       if (reviewResponse.error) {
-        res.status(400).json({ error: reviewResponse.error })
+        res.status(400).json({error: reviewResponse.error})
         return
       }
 
@@ -53,9 +68,9 @@ export default class ReviewsController {
         throw new Error("unable to update review")
       }
 
-      res.json({ status: "success" })
+      res.json({status: "success"})
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      res.status(500).json({error: e.message})
     }
   }
 
@@ -64,9 +79,9 @@ export default class ReviewsController {
     try {
       const reviewId = req.params.id
       const reviewResponse = await ReviewsDAO.deleteReview(reviewId)
-      res.json({ status: "success" })
+      res.json({status: "success"})
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      res.status(500).json({error: e.message})
     }
   }
 
@@ -75,12 +90,12 @@ export default class ReviewsController {
       let id = req.params.id || {}
       let reviews = await ReviewsDAO.getReviewsByMovieId(id)
       if (!reviews) {
-        res.status(404).json({ error: "Not found!" })
+        res.status(404).json({error: "Not found!"})
         return
       }
       res.json(reviews)
     } catch (e) {
-      res.status(500).json({ error: e.message })
+      res.status(500).json({error: e.message})
     }
   }
 }

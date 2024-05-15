@@ -10,6 +10,6 @@ router.route("/new").post(ReviewCtrl.apiPostReview);
 router.route("/:id")
   .put(ReviewCtrl.apiUpdateReview)
   .delete(ReviewCtrl.apiDeleteReview)
-  .put(ReviewCtrl.apiUpdateReview);
+  .get(ReviewCtrl.apiGetReviewById);
 
 export default router;
