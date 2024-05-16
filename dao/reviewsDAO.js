@@ -32,10 +32,10 @@ export default class ReviewsDAO {
 
   static async getReview(reviewId) {
     try {
-      return await reviews.findOne({_id: ObjectId(reviewId)});
+      return await reviews.findOne({_id: new ObjectId(reviewId)});
     } catch (e) {
       console.error(`Unable to get review: ${e}`);
-      return {error: e};
+      return {error: e.message};
     }
   }
   static async updateReview(reviewId, user, review) {

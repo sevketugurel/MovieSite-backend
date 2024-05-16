@@ -1,18 +1,6 @@
 import ReviewsDAO from "../dao/reviewsDAO.js"
 
 export default class ReviewsController {
-  static async apiGetReviewById(req, res) {
-    try {
-      const review = await ReviewsDAO.getReview(req.params.id);
-      if (!review) {
-        return res.status(404).json({ error: "Review not found" });
-      }
-      res.json(review);
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ error: "Server error" });
-    }
-  }
 
   static async apiPostReview(req, res, next) {
     try {
@@ -25,23 +13,7 @@ export default class ReviewsController {
         user,
         review
       )
-
       res.json({status: "success"})
-    } catch (e) {
-      res.status(500).json({error: e.message})
-    }
-  }
-
-  static async apiGetReview(req, res) {
-    try {
-      let id = req.params.id || {}
-      let review = await ReviewsDAO.getReview(id)
-      if (!review) {
-        res.status(404).json({error: "Not found"})
-        return
-      }
-      res.json(review)
-
     } catch (e) {
       res.status(500).json({error: e.message})
     }
@@ -74,7 +46,6 @@ export default class ReviewsController {
     }
   }
 
-  //SANKİ SİLMEDE SIKINTI VAR GİBİ BUARADA KALDIM.
   static async apiDeleteReview(req, res, next) {
     try {
       const reviewId = req.params.id
