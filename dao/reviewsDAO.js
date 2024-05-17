@@ -15,7 +15,6 @@ export default class ReviewsDAO {
       console.error(`Unable to establish collection handles in userDAO: ${e}`);
     }
   }
-
   static async addReview(movieId, user, review) {
     try {
       const reviewDoc = {
@@ -29,13 +28,12 @@ export default class ReviewsDAO {
       return {error: e};
     }
   }
-
-  static async getReview(reviewId) {
+  static async getReviewById(reviewId) {
     try {
       return await reviews.findOne({_id: new ObjectId(reviewId)});
     } catch (e) {
       console.error(`Unable to get review: ${e}`);
-      return {error: e.message};
+      return { error: e };
     }
   }
   static async updateReview(reviewId, user, review) {
@@ -45,8 +43,8 @@ export default class ReviewsDAO {
         {$set: {user: user, review: review}}
       );
     } catch (e) {
-      console.error(`Unable to update review: ${e}`);
-      return { error: e };
+      console.error(`Unable to update review: ${e.message}`);
+      return { error: e.message };
     }
   }
   static async deleteReview(reviewId) {
@@ -63,8 +61,8 @@ export default class ReviewsDAO {
       const cursor = await reviews.find({ movieId: parseInt(movieId) });
       return cursor.toArray();
     } catch (e) {
-      console.error(`Unable to get review: ${e}`);
-      return { error: e };
+      console.error(`Unable to get review: ${e.message}`);
+      return { error: e.message };
     }
   }
 }

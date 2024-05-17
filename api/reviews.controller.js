@@ -8,7 +8,7 @@ export default class ReviewsController {
       const review = req.body.review
       const user = req.body.user
 
-      const reviewResponse = await ReviewsDAO.addReview(
+      const reviewResponse = await  ReviewsDAO.addReview(
         movieId,
         user,
         review
@@ -58,8 +58,8 @@ export default class ReviewsController {
 
   static async apiGetReviews(req, res, next) {
     try {
-      let id = req.params.id || {}
-      let reviews = await ReviewsDAO.getReviewsByMovieId(id)
+      let id = req.params.id
+      let reviews = await ReviewsDAO.getReviewById(id)
       if (!reviews) {
         res.status(404).json({error: "Not found!"})
         return
@@ -69,4 +69,20 @@ export default class ReviewsController {
       res.status(500).json({error: e.message})
     }
   }
+
+  static async apiGetReviewsByMovie(req, res, next) {
+    try {
+      let movieId = req.params.id
+      let reviews = await ReviewsDAO.getReviewsByMovieId(movieId)
+      if (!reviews) {
+        res.status(404).json({error: "Not found!"})
+        return
+      }
+      res.json(reviews)
+    } catch (e) {
+      res.status(500).json({error: e.message})
+    }
+  }
+
+
 }

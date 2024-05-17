@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route("/").get((req, res) => res.send("Hello World!"));
 
-router.route("/movie/:id").get(ReviewCtrl.apiGetReviews);
+router.route("/movie/:id").get(ReviewCtrl.apiGetReviewsByMovie);
 router.route("/new").post(ReviewCtrl.apiPostReview);
 router.route("/:id")
   .put(ReviewCtrl.apiUpdateReview)
