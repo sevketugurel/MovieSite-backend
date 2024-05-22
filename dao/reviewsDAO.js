@@ -39,7 +39,7 @@ export default class ReviewsDAO {
   static async updateReview(reviewId, user, review) {
     try {
       return await reviews.updateOne(
-        {_id: ObjectId(reviewId)},
+        {_id: new ObjectId(reviewId)},
         {$set: {user: user, review: review}}
       );
     } catch (e) {
@@ -49,7 +49,7 @@ export default class ReviewsDAO {
   }
   static async deleteReview(reviewId) {
     try {
-      return await reviews.deleteOne({_id: ObjectId(reviewId)});
+      return await reviews.deleteOne({_id: new ObjectId(reviewId)});
     } catch (e) {
       console.error(`Unable to delete review: ${e}`);
       return { error: e };
