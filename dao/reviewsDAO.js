@@ -44,7 +44,7 @@ export default class ReviewsDAO {
       );
     } catch (e) {
       console.error(`Unable to update review: ${e.message}`);
-      return { error: e.message };
+      return { error: e.message }; // hatayı daha iyi yönetebilmek için e.message kullandık.
     }
   }
   static async deleteReview(reviewId) {
